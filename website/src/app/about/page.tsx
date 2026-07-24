@@ -42,7 +42,7 @@ const team = [
   {
     name: "Morris Lionel",
     role: "Chief Security Officer",
-    creds: "26 yrs U.S. Army · Active clearance",
+    creds: "U.S. Army Veteran · Active Clearance · 26 yrs Ops",
     photo: "/team/morris-lionel.jpg",
     bio: "26 years across U.S. Army tactical, security, and operational domains. Security isn't a feature here — it's the foundation, and every layer withstands scrutiny.",
   },
