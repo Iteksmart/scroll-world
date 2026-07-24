@@ -37,7 +37,7 @@ const team = [
     role: "Chief Technology Officer",
     creds: "15+ yrs · IRS-scale federal projects",
     photo: "/team/fawad-zulfiqar.jpg",
-    bio: "Former IRS Deputy Director of QA Engineering; PMP, CSM, MBA. The engineering mind behind UAIO's 42-module platform.",
+    bio: "Former IRS Deputy Director of QA Engineering; PMP, CSM, MBA. The engineering mind behind the UAIO platform.",
   },
   {
     name: "Morris Lionel",

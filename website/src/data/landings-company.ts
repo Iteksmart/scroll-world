@@ -252,7 +252,7 @@ export const landingsCompany: LandingPage[] = [
         items: [
           { title: "DJuane Jackson — Founder & CEO", copy: "24-year U.S. Army veteran who invented UAIO. Built enterprise IT for healthcare, government, and defense before building the platform to automate it. Speaks on autonomous IT, AI accountability, and veteran entrepreneurship." },
           { title: "Hamda Awan — Co-Founder & CMO", copy: "10+ years across technology, healthcare, and federal programs. Translates infrastructure capability into language decision-makers actually understand." },
-          { title: "Fawad Zulfiqar — CTO", copy: "15+ years leading enterprise IT, cloud, and DevOps, including IRS-scale federal projects. The engineering mind behind the 42-module platform." },
+          { title: "Fawad Zulfiqar — CTO", copy: "15+ years leading enterprise IT, cloud, and DevOps, including IRS-scale federal projects. The engineering mind behind the UAIO platform." },
           { title: "Morris Lionel — CSO", copy: "26 years across U.S. Army tactical, security, and operational domains, with active clearance. Leads security architecture and the Citadel government line." },
         ],
       },
