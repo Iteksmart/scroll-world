@@ -30,7 +30,7 @@ export function LedgerFeed() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("https://api.itechsmart.dev/v1/ledger", { signal: controller.signal })
+    fetch("https://verify.itechsmart.dev/api/receipts?limit=10", { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((data: unknown) => {
         const items = Array.isArray(data) ? data : (data as { receipts?: unknown[] })?.receipts;
@@ -39,9 +39,9 @@ export function LedgerFeed() {
           const r = item as Record<string, unknown>;
           return {
             n: items.length - i,
-            event: String(r.event ?? r.action ?? "RECEIPT SEALED").toUpperCase().replace(/_/g, " "),
-            slug: String(r.event ?? r.action ?? "receipt_sealed"),
-            hash: String(r.hash ?? r.receipt_id ?? "").slice(0, 8) + "…" + String(r.hash ?? r.receipt_id ?? "").slice(-4),
+            event: String(r.type ?? r.event ?? "RECEIPT SEALED").toUpperCase().replace(/_/g, " "),
+            slug: String(r.type ?? r.event ?? "receipt_sealed"),
+            hash: String(r.sha256 ?? r.hash ?? r.receipt_id ?? "").slice(0, 8) + "…" + String(r.sha256 ?? r.hash ?? r.receipt_id ?? "").slice(-4),
           };
         });
         setReceipts(mapped);

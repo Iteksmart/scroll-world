@@ -42,6 +42,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="min-h-screen bg-ink font-sans text-mist antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(organizationJsonLd())} />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J5WJ7WCT4S" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J5WJ7WCT4S');",
+          }}
+        />
         <a
           href="#main"
           className="sr-only z-[100] rounded-full bg-proof px-5 py-2.5 font-semibold text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"

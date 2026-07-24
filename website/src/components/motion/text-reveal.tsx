@@ -31,24 +31,32 @@ export function TextReveal({ text, className, wordClassName, delay = 0, as: Tag 
     );
   }
 
+  // One observer on the wrapper, words staggered via variants: per-word
+  // whileInView observers can freeze a word mid-flight when hydration jank
+  // coincides with the animation start (seen on /suite, mobile viewport).
   return (
     <Tag className={className} aria-label={text}>
-      {words.map((word, i) => (
-        <span key={i}>
-          <span className="inline-block overflow-hidden pb-[0.12em] -mb-[0.12em] align-bottom" aria-hidden>
-            <motion.span
-              className={`inline-block will-change-transform ${wordClassName ?? ""}`}
-              initial={{ y: "110%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.85, delay: delay + i * 0.045, ease }}
-            >
-              {word}
-            </motion.span>
+      <motion.span
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.045, delayChildren: delay } } }}
+        aria-hidden
+      >
+        {words.map((word, i) => (
+          <span key={i}>
+            <span className="inline-block overflow-hidden pb-[0.12em] -mb-[0.12em] align-bottom">
+              <motion.span
+                className={`inline-block will-change-transform ${wordClassName ?? ""}`}
+                variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.85, ease } } }}
+              >
+                {word}
+              </motion.span>
+            </span>
+            {i < words.length - 1 ? " " : null}
           </span>
-          {i < words.length - 1 ? " " : null}
-        </span>
-      ))}
+        ))}
+      </motion.span>
     </Tag>
   );
 }
