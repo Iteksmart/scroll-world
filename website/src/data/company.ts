@@ -136,7 +136,7 @@ export const news: NewsItem[] = [
     body: [
       "DJuane Jackson — Founder & CEO. A 24-year U.S. Army veteran with a career spanning systems administration, cybersecurity, cloud architecture, enterprise automation, and mission-critical operations. Built and deployed enterprise IT infrastructure for healthcare, government, and defense before building the platform to automate it. Operator first, founder second.",
       "Hamda Awan — Co-Founder & CMO. Marketing strategist leading global brand direction, AI-driven growth, and data-powered decisions, with 10+ years across technology, healthcare, and federal programs. Translates complex infrastructure capability into language decision-makers actually understand.",
-      "Fawad Zulfiqar — Chief Technology Officer. Former IRS Deputy Director of QA Engineering; PMP, CSM, MBA. 15+ years of federal technology leadership and enterprise architecture — the engineering mind behind UAIO's 42-module platform.",
+      "Fawad Zulfiqar — Chief Technology Officer. Former IRS Deputy Director of QA Engineering; PMP, CSM, MBA. 15+ years of federal technology leadership and enterprise architecture — the engineering mind behind the UAIO platform.",
       "Morris Lionel — Chief Security Officer. A 26-year U.S. Army cybersecurity professional with an active government security clearance. Leads security architecture, compliance posture, and the Citadel government product line. Security isn't a feature here — it's the foundation.",
     ],
   },
