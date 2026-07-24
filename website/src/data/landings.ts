@@ -33,8 +33,9 @@ import { landingsCore } from "./landings-core";
 import { landingsCompliance } from "./landings-compliance";
 import { landingsCompany } from "./landings-company";
 import { landingsExtra } from "./landings-extra";
+import { landingsPillars } from "./landings-pillars";
 
-export const landings: LandingPage[] = [...landingsCore, ...landingsCompliance, ...landingsCompany, ...landingsExtra];
+export const landings: LandingPage[] = [...landingsCore, ...landingsCompliance, ...landingsCompany, ...landingsExtra, ...landingsPillars];
 
 export const landingBySlug = (slug: string) => landings.find((l) => l.slug === slug);
 

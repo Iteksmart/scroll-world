@@ -4,7 +4,7 @@ import { products, productBySlug } from "@/data/products";
 import { landings, landingBySlug } from "@/data/landings";
 import { ProductTemplate } from "@/components/templates/product-template";
 import { LandingTemplate } from "@/components/templates/landing-template";
-import { pageMeta, softwareJsonLd, breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
+import { pageMeta, softwareJsonLd, breadcrumbJsonLd, faqJsonLd, articleJsonLd, jsonLdScript } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -60,17 +60,29 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
 
   const landing = landingBySlug(slug);
   if (landing) {
+    // Collect every Q&A across the landing's faq blocks into one FAQPage graph,
+    // and describe the page itself as an Article — both help AI assistants and
+    // search engines extract and cite the content.
+    const faqItems = landing.blocks
+      .filter((b): b is Extract<typeof b, { type: "faq" }> => b.type === "faq")
+      .flatMap((b) => b.items);
+    const graph: object[] = [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: landing.title, path: `/${landing.slug}` },
+      ]),
+      articleJsonLd({
+        title: landing.metaTitle,
+        description: landing.metaDescription,
+        path: `/${landing.slug}`,
+        datePublished: "2026-01-01",
+        dateModified: new Date().toISOString().slice(0, 10),
+      }),
+    ];
+    if (faqItems.length) graph.push(faqJsonLd(faqItems));
     return (
       <>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={jsonLdScript(
-            breadcrumbJsonLd([
-              { name: "Home", path: "/" },
-              { name: landing.title, path: `/${landing.slug}` },
-            ]),
-          )}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(graph)} />
         <LandingTemplate page={landing} />
       </>
     );
