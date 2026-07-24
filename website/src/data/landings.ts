@@ -13,6 +13,8 @@ export type Block =
   | { type: "steps"; eyebrow?: string; title: string; lede?: string; items: { title: string; copy: string }[] }
   | { type: "faq"; eyebrow?: string; title: string; items: { q: string; a: string }[] }
   | { type: "quote"; text: string; attribution: string }
+  | { type: "diagram"; name: "uaio-loop" | "receipt-lifecycle" | "accountability-stack" | "arbiter-flow" | "digital-twin"; caption?: string }
+  | { type: "code"; eyebrow?: string; title?: string; lede?: string; language?: string; code: string }
   | { type: "receipt" };
 
 export type LandingPage = {
@@ -34,8 +36,9 @@ import { landingsCompliance } from "./landings-compliance";
 import { landingsCompany } from "./landings-company";
 import { landingsExtra } from "./landings-extra";
 import { landingsPillars } from "./landings-pillars";
+import { landingsPillars2 } from "./landings-pillars2";
 
-export const landings: LandingPage[] = [...landingsCore, ...landingsCompliance, ...landingsCompany, ...landingsExtra, ...landingsPillars];
+export const landings: LandingPage[] = [...landingsCore, ...landingsCompliance, ...landingsCompany, ...landingsExtra, ...landingsPillars, ...landingsPillars2];
 
 export const landingBySlug = (slug: string) => landings.find((l) => l.slug === slug);
 

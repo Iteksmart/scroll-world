@@ -1,0 +1,100 @@
+{
+  "info": {
+    "name": "iTechSmart ProofLink & MCP (Public)",
+    "description": "Ready-to-run requests against iTechSmart's public endpoints: the ProofLink receipt verifier and the governed MCP/A2A surface. No account required — the verifier is public and the MCP demo key (MCP-SECRETEYE-123456) is read-only and rate-limited. Set the {{receipt_id}} variable to any real receipt ID from verify.itechsmart.dev.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "verify_base", "value": "https://verify.itechsmart.dev" },
+    { "key": "mcp_base", "value": "https://mcp.itechsmart.dev" },
+    { "key": "mcp_demo_key", "value": "MCP-SECRETEYE-123456" },
+    { "key": "receipt_id", "value": "REPLACE_WITH_A_REAL_RECEIPT_ID" }
+  ],
+  "item": [
+    {
+      "name": "Verify a ProofLink receipt",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{verify_base}}/api/receipt/{{receipt_id}}",
+          "host": ["{{verify_base}}"],
+          "path": ["api", "receipt", "{{receipt_id}}"]
+        },
+        "description": "Returns the sealed action, hash-chain status, and OpenTimestamps/Bitcoin anchor for a receipt. Public — no auth."
+      }
+    },
+    {
+      "name": "Public ledger stats",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{verify_base}}/api/stats",
+          "host": ["{{verify_base}}"],
+          "path": ["api", "stats"]
+        },
+        "description": "Live ledger totals and chain-integrity summary."
+      }
+    },
+    {
+      "name": "List MCP tools",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{mcp_base}}/mcp/tools",
+          "host": ["{{mcp_base}}"],
+          "path": ["mcp", "tools"]
+        },
+        "description": "Discover the governed MCP tool surface."
+      }
+    },
+    {
+      "name": "A2A agent card",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{mcp_base}}/.well-known/agent.json",
+          "host": ["{{mcp_base}}"],
+          "path": [".well-known", "agent.json"]
+        },
+        "description": "The Agent-to-Agent (A2A) capability card for the governed surface."
+      }
+    },
+    {
+      "name": "Platform health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{mcp_base}}/health",
+          "host": ["{{mcp_base}}"],
+          "path": ["health"]
+        },
+        "description": "Public platform health check — no auth."
+      }
+    },
+    {
+      "name": "MCP tool call (authenticated, read-only demo key)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{mcp_demo_key}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tool\": \"platform_status\",\n  \"arguments\": {}\n}"
+        },
+        "url": {
+          "raw": "{{mcp_base}}/mcp/call",
+          "host": ["{{mcp_base}}"],
+          "path": ["mcp", "call"]
+        },
+        "description": "Example governed tool call using the public read-only demo key. Side-effecting tools pass Arbiter policy gates and return a ProofLink receipt; platform_status is a safe read-only example."
+      }
+    }
+  ]
+}

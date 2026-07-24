@@ -6,6 +6,7 @@ import { ReceiptCard } from "@/components/ui/receipt-card";
 import { Stagger, StaggerItem, Reveal } from "@/components/motion/reveal";
 import { NumberTicker } from "@/components/motion/number-ticker";
 import { Check, X } from "lucide-react";
+import { Diagram } from "@/components/ui/diagrams";
 import type { Block } from "@/data/landings";
 
 /** Renders a sequence of typed content blocks — shared by landing + solution templates. */
@@ -163,6 +164,36 @@ export function BlockRenderer({ block }: { block: Block }) {
         </Section>
       );
 
+    case "diagram":
+      return (
+        <Section divider>
+          <Container>
+            <Reveal>
+              <div className="rounded-2xl border border-line bg-card/40 p-6 sm:p-10">
+                <Diagram name={block.name} />
+                {block.caption && (
+                  <p className="mt-6 text-center text-sm text-fog">{block.caption}</p>
+                )}
+              </div>
+            </Reveal>
+          </Container>
+        </Section>
+      );
+    case "code":
+      return (
+        <Section divider>
+          <Container>
+            {(block.eyebrow || block.title || block.lede) && (
+              <SectionHeading eyebrow={block.eyebrow} title={block.title ?? ""} lede={block.lede} />
+            )}
+            <Reveal>
+              <pre className="mt-8 overflow-x-auto rounded-xl border border-line bg-ink/70 p-5 text-sm leading-relaxed">
+                <code className="font-mono text-mist">{block.code}</code>
+              </pre>
+            </Reveal>
+          </Container>
+        </Section>
+      );
     case "receipt":
       return (
         <Section divider>

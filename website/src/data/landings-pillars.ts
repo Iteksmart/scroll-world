@@ -32,6 +32,7 @@ export const landingsPillars: LandingPage[] = [
       { label: "See how ProofLink works", href: "/prooflink", variant: "secondary" },
     ],
     blocks: [
+      { type: "diagram", name: "accountability-stack", caption: "The AI accountability stack — proof sits on top of governed, simulated, reasoned signal." },
       {
         type: "intro",
         eyebrow: "Definition",
@@ -179,6 +180,7 @@ export const landingsPillars: LandingPage[] = [
       { label: "EU AI Act readiness", href: "/eu-ai-act", variant: "secondary" },
     ],
     blocks: [
+      { type: "diagram", name: "arbiter-flow", caption: "Arbiter gates every action — approve, hold for a human, or block — and receipts the outcome." },
       {
         type: "intro",
         eyebrow: "Definition",
@@ -317,6 +319,7 @@ export const landingsPillars: LandingPage[] = [
       { label: "The ProofLink product", href: "/prooflink", variant: "secondary" },
     ],
     blocks: [
+      { type: "diagram", name: "receipt-lifecycle", caption: "How a ProofLink receipt is sealed — from action to independent verification." },
       {
         type: "intro",
         eyebrow: "Definition",
@@ -557,6 +560,7 @@ export const landingsPillars: LandingPage[] = [
       { label: "UAIO vs AIOps", href: "/compare/uaio-vs-aiops", variant: "secondary" },
     ],
     blocks: [
+      { type: "diagram", name: "uaio-loop", caption: "The UAIO loop — every cycle detects, decides, simulates, acts, and seals a receipt." },
       {
         type: "intro",
         eyebrow: "Definition",
@@ -666,6 +670,7 @@ export const landingsPillars: LandingPage[] = [
       { label: "Talk to us", href: "/contact", variant: "secondary" },
     ],
     blocks: [
+      { type: "diagram", name: "digital-twin", caption: "Simulate the fix on the twin, gate on the result, then act on production." },
       {
         type: "intro",
         eyebrow: "Definition",

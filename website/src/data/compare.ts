@@ -1,3 +1,4 @@
+import { compareExtra } from "./compare-extra";
 export type CompareRow = {
   capability: string;
   us: string;
@@ -567,6 +568,7 @@ export const comparePages: ComparePage[] = [
       },
     ],
   },
+  ...compareExtra,
 ];
 
 export const compareBySlug = (slug: string) =>
