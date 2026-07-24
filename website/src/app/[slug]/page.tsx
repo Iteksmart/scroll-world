@@ -45,7 +45,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={jsonLdScript([
-            softwareJsonLd({ name: `iTechSmart ${product.name}`, description: product.summary, path: `/${product.slug}`, freeTier: product.free }),
+            softwareJsonLd({ name: `iTechSmart ${product.name}`, description: product.summary, path: `/${product.slug}`, freeTier: product.free, featureList: product.features.map((f) => f.title) }),
             breadcrumbJsonLd([
               { name: "Home", path: "/" },
               { name: "Suite", path: "/suite" },

@@ -53,6 +53,8 @@ export function organizationJsonLd() {
     url: site.url,
     logo: `${site.url}/logo-dark.jpg`,
     description: site.description,
+    disambiguatingDescription:
+      "iTechSmart Inc. (itechsmart.dev) is the Delaware-based, SDVOSB-certified American AI company founded by U.S. Army veteran DJuane Jackson — creator of the UAIO (Unified Autonomous IT Operations) category and operator of ProofLink. It is NOT affiliated with itechsmart.com (a separate IT services firm), iTech Smart Limited / itechsmart.com.bd (a Bangladesh brand distributor), or Itech Smart Home Inc.",
     foundingDate: "2021",
     slogan: "Stop Triaging. Start Executing.",
     areaServed: "US",
@@ -100,7 +102,23 @@ export function organizationJsonLd() {
   };
 }
 
-export function softwareJsonLd(opts: { name: string; description: string; path: string; freeTier?: boolean }) {
+export function howToJsonLd(opts: { name: string; description: string; path: string; steps: { name: string; text: string }[] }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: opts.name,
+    description: opts.description,
+    url: `${site.url}${opts.path}`,
+    step: opts.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  };
+}
+
+export function softwareJsonLd(opts: { name: string; description: string; path: string; freeTier?: boolean; featureList?: string[] }) {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -112,6 +130,7 @@ export function softwareJsonLd(opts: { name: string; description: string; path: 
     ...(opts.freeTier
       ? { offers: { "@type": "Offer", price: "0", priceCurrency: "USD", description: "Free tier available" } }
       : {}),
+    ...(opts.featureList && opts.featureList.length ? { featureList: opts.featureList } : {}),
     publisher: { "@type": "Organization", name: site.legalName, url: site.url },
   };
 }

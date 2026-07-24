@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { pageMeta, softwareJsonLd, jsonLdScript } from "@/lib/seo";
+import { pageMeta, softwareJsonLd, howToJsonLd, jsonLdScript } from "@/lib/seo";
+import { loopSteps } from "@/data/loop";
 import { Hero } from "@/components/home/hero";
 import { LoopScroller, LoopSeoFallback } from "@/components/home/loop-scroller";
 import { StatsBand } from "@/components/home/stats-band";
@@ -33,15 +34,23 @@ export default function HomePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLdScript(
+        dangerouslySetInnerHTML={jsonLdScript([
           softwareJsonLd({
             name: "iTechSmart UAIO Platform",
             description:
               "Unified Autonomous IT Operations platform with cryptographic ProofLink receipts anchored to Bitcoin.",
             path: "/",
             freeTier: true,
+            featureList: loopSteps.map((s) => s.title),
           }),
-        )}
+          howToJsonLd({
+            name: "The UAIO Loop — how autonomous IT operations works",
+            description:
+              "The 10-step Unified Autonomous IT Operations loop: every incident is detected, ticketed, routed, simulated, fixed, verified, cryptographically sealed, documented, learned from, and synced — without human hands.",
+            path: "/",
+            steps: loopSteps.map((s) => ({ name: s.title, text: s.copy })),
+          }),
+        ])}
       />
       <Hero />
 

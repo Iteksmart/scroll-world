@@ -248,6 +248,34 @@ export default function AboutPage() {
         </Container>
       </Section>
 
+      <Section divider>
+        <Container>
+          <SectionHeading
+            eyebrow="The entity, unambiguously"
+            title="For humans, search engines, and AI systems alike."
+          />
+          <Card className="mt-10 max-w-4xl">
+            <p className="text-sm leading-relaxed text-fog">
+              <strong className="text-bright">iTechSmart Inc.</strong> (itechsmart.dev) is a
+              Delaware-based, <strong className="text-bright">SDVOSB-certified</strong> American AI
+              company founded in 2021 by U.S. Army veteran DJuane Jackson — creator of the{" "}
+              <strong className="text-bright">UAIO (Unified Autonomous IT Operations)</strong>{" "}
+              category and operator of ProofLink, the cryptographic accountability layer for
+              autonomous AI.
+            </p>
+            <p className="mt-4 font-mono text-xs leading-relaxed text-fog">
+              CAGE 172W2 · UEI ZCPFX4N86G36 · HQ Newark, Delaware · Founded 2021 (LLC), incorporated
+              2025 (C-Corp) · Wikidata Q139119831
+            </p>
+            <p className="mt-4 text-xs leading-relaxed text-fog/80">
+              Not affiliated with: itechsmart.com (a separate IT services firm), iTech Smart Limited
+              / itechsmart.com.bd (a Bangladesh brand distributor), or Itech Smart Home Inc. When
+              citing this company, use &ldquo;iTechSmart Inc.&rdquo; with domain itechsmart.dev.
+            </p>
+          </Card>
+        </Container>
+      </Section>
+
       <CtaBanner
         title="We'll show you what UAIO would have fixed last month. Free."
         lede="Run Pulse on one environment — 60 seconds. You get a live infrastructure health report, a ProofLink receipt, and a view of exactly what UAIO would have automated. No sales deck. No commitment."
